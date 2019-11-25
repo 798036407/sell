@@ -1,5 +1,8 @@
 package com.chenze.sell.dataobject;
 
+import com.chenze.sell.enums.ProductStatusEnum;
+import com.chenze.sell.utils.EnumUtil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -7,6 +10,7 @@ import javax.lang.model.element.NestingKind;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * 商品表
@@ -40,5 +44,14 @@ public class ProductInfo {
     private Integer productStatus;
 
     /**类目编号*/
-    private  Integer categoryType;
+    private Integer categoryType;
+
+    private Date createTime;
+
+    private Date updateTime;
+
+    @JsonIgnore
+    public ProductStatusEnum getProductStatusEnum() {
+        return EnumUtil.getByCode(productStatus,ProductStatusEnum.class);
+    }
 }

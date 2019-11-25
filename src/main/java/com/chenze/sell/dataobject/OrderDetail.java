@@ -20,8 +20,10 @@ public class OrderDetail {
     @Id
     private String detailId;
 
+    /**订单id*/
     private String orderId;
 
+    /**商品id*/
     private String productId;
 
     /**商品名称*/
@@ -31,7 +33,7 @@ public class OrderDetail {
     private BigDecimal productPrice;
 
     /**数量*/
-    private int productQuantity;
+    private Integer productQuantity;
 
     /**小图*/
     private String productIcon;
