@@ -1,0 +1,25 @@
+package com.chenze.sell.utils;
+
+/**
+ * Create by cz
+ * Date： 2019/12/12 22:32
+ */
+public class MathUtil {
+
+    private static final Double MONEY_RANGE = 0.01;
+
+    /**
+     * 比较两个金额是否一致
+     * @param d1
+     * @param d2
+     * @return
+     */
+    public static Boolean equals(Double d1, Double d2) {
+        Double result = Math.abs(d1 - d2);
+        if (result < MONEY_RANGE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}

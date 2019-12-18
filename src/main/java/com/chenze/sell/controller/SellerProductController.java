@@ -7,9 +7,12 @@ import com.chenze.sell.exception.SellException;
 import com.chenze.sell.form.ProductForm;
 import com.chenze.sell.service.CategoryService;
 import com.chenze.sell.service.ProductService;
+import com.chenze.sell.utils.KeyUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -130,6 +133,8 @@ public class SellerProductController {
      * @return
      */
     @PostMapping("/save")
+//    @CachePut(cacheNames = "product", key = "123")
+//    @CacheEvict(cacheNames = "product", key = "123")
     public ModelAndView save(@Valid ProductForm form,
                              BindingResult bindingResult,
                              Map<String, Object> map) {
@@ -139,9 +144,16 @@ public class SellerProductController {
             return new ModelAndView("common/error",map);
         }
 
-        ProductInfo productInfo = new ProductInfo();BeanUtils.copyProperties(form, productInfo);
-
+        ProductInfo productInfo = new ProductInfo();
         try {
+            //如果productId为空，说明是新增
+            if (!StringUtils.isEmpty(form.getProductId())) {
+                productInfo = productService.findOne(form.getProductId());
+            }else {
+                form.setProductId(KeyUtil.genUniqueKey());
+            }
+
+            BeanUtils.copyProperties(form, productInfo);
             productService.save(productInfo);
         }catch (SellException e){
             map.put("msg",e.getMessage());

@@ -8,6 +8,9 @@ import com.chenze.sell.exception.SellException;
 import com.chenze.sell.repository.ProductInfoRepository;
 import com.chenze.sell.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -20,12 +23,14 @@ import java.util.List;
  * Date: 2019/5/4  23:34
  */
 @Service
+//@CacheConfig(cacheNames = "product")
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductInfoRepository repository;
 
     @Override
+//    @Cacheable(key = "123")
     public ProductInfo findOne(String productId) {
         return repository.findOne(productId);
     }
@@ -41,6 +46,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+//    @CachePut(key = "123")
     public ProductInfo save(ProductInfo productInfo) {
         return repository.save(productInfo);
     }

@@ -3,11 +3,38 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: 123456
-    url: jdbc:mysql://192.168.1.42/sell?characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://192.168.1.105/sell?characterEncoding=utf-8&useSSL=false
   jpa:
     show-sql: true
   ##@JsonInclude(JsonInclude.Include.NON_NULL)//如果是空不返回
   jackson:
     default-property-inclusion: non_null
+  redis:
+    host: 192.168.1.105
+    port: 6379
 server:
   context-path: /sell
+wechat:
+  mpAppId: wx7fa7f63641cd6041
+  mpAppSecret: 84fe3f472b411d599ae79e5889e588c5
+  openAppId: 11
+  openAppSecret: 22
+  mchId: 1567581091
+  mchKey: tswcbyy0qjsjhfl0wblmxxx0bjcjggl0
+  keyPath: E:/soft/weixin_cert/apiclient_cert.p12
+  notifyUrl: http://czdashuaige.natapp1.cc/sell/pay/notify
+  templateId:
+    orderStatus: _AzZCBREjCTbD3ZonkmC5CwR7EVzLrQG5Mh0AMNLfVo
+
+ProjectUrlConfig:
+  wechatOpenAuthorize: http://czdashuaige.natapp1.cc
+  sell: http://czdashuaige.natapp1.cc
+
+#日志级别，能打印出mybatis的sql 语句
+#logging:
+#  level:
+#    com.chenze.sell.dataobject.mapper: trace
+
+#配置mybatis的mapper路径
+mybatis:
+  mapper-locations: classpath:mapper/*.xml

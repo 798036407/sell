@@ -29,9 +29,6 @@ public class ProductForm {
     /**小图*/
     private String ProductIcon;
 
-    /**状态，0正常1下架*/
-    private Integer productStatus;
-
     /**类目编号*/
     private Integer categoryType;
 }
