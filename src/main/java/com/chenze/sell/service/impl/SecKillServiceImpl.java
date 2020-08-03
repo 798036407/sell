@@ -5,6 +5,7 @@ import com.chenze.sell.service.RedisLock;
 import com.chenze.sell.service.SecKillService;
 import com.chenze.sell.utils.KeyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +14,7 @@ import java.util.Map;
  * Create by cz
  * Date： 2019/12/18 9:15
  */
+@Service
 public class SecKillServiceImpl implements SecKillService {
     private static final int TIMEOUT = 10 * 1000; //超时时间 10s
 
@@ -71,6 +73,7 @@ public class SecKillServiceImpl implements SecKillService {
             //3.减库存
             stockNum =stockNum-1;
             try {
+                //线程休眠模拟业务代码时间
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
