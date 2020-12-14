@@ -37,7 +37,6 @@ public class BuyerProductorController {
 
     /**
      * unless跟condition都是满足条件缓存，unless是结果满足条件（正确的缓存），condition是入参满足条件
-     * @return
      */
     @GetMapping("/list")
     @Cacheable(cacheNames = "product", key = "123", unless = "#result.getCode() != 0")
@@ -73,6 +72,15 @@ public class BuyerProductorController {
                     productInfoVOList.add(productInfoVO);
                 }
             }
+//            productInfoList
+//                    .stream()
+//                    .peek(productInfo -> {
+//                        if (productInfo.getCategoryType().equals(productCategory.getCategoryType())) {
+//                            ProductInfoVO productInfoVO = new ProductInfoVO();
+//                            BeanUtils.copyProperties(productInfo, productInfoVO);
+//                            productInfoVOList.add(productInfoVO);
+//                        }
+//                    });
             productVO.setProductInfoVOList(productInfoVOList);
             productVOList.add(productVO);
         }

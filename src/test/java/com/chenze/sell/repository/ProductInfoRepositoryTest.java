@@ -1,6 +1,5 @@
 package com.chenze.sell.repository;
 
-import com.chenze.sell.dataobject.ProductCategory;
 import com.chenze.sell.dataobject.ProductInfo;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,11 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.beans.PropertyDescriptor;
 import java.math.BigDecimal;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by cz
@@ -22,6 +18,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProductInfoRepositoryTest {
+
 
     @Autowired
     private ProductInfoRepository repository;

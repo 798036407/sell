@@ -50,8 +50,8 @@ public class SellerAuthorizeAspect {
         }
 
         //去redis里查询
-        String tokenvalue  = redisTemplate.opsForValue().get(String.format(RedisConstant.TOKEN_PREFIX, cookie.getValue()));
-        if (StringUtils.isEmpty(tokenvalue)) {
+        String tokenValue  = redisTemplate.opsForValue().get(String.format(RedisConstant.TOKEN_PREFIX, cookie.getValue()));
+        if (StringUtils.isEmpty(tokenValue)) {
             log.warn("【登录校验】 Redis中查不到token");
         }
     }
